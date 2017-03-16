@@ -49,6 +49,8 @@
     print_r($_SESSION['time']);
     if($_SESSION['food']<100){
       $_SESSION['food'] += 1;
+    } else if ($_SESSION['food']>100){
+      $_SESSION['food'] = 100;
     };
 
     return $app['twig']->render('index.html.twig', array('food'=>$_SESSION['food']));
@@ -64,6 +66,8 @@
     print_r($_SESSION['time']);
     if($_SESSION['rest']<100){
       $_SESSION['rest'] += 1;
+    } else if ($_SESSION['rest']>100){
+      $_SESSION['rest']=100;
     };
 
     return $app['twig']->render('index.html.twig', array('rest'=>$_SESSION['rest']));
@@ -79,6 +83,8 @@
     print_r($_SESSION['time']);
     if($_SESSION['attention']<100){
       $_SESSION['attention'] += 1;
+    } else if ($_SESSION['attention']>100){
+      $_SESSION['attention']=100;
     };
 
     return $app['twig']->render('index.html.twig', array('attention'=>$_SESSION['attention']));
@@ -92,9 +98,9 @@
     print_r($_SESSION['time']);
     $dif = ($hour*3600 + $min*60 + $sec) - ($_SESSION['time'][0]*3600 + $_SESSION['time'][1]*60 + $_SESSION['time'][2]);
 
-    $_SESSION['food'] -= number_format($dif/100,2);
-    $_SESSION['rest'] -= number_format($dif/10,2);
-    $_SESSION['attention'] -= number_format($dif/5,2);
+    $_SESSION['food'] -= number_format($dif*2,2);
+    $_SESSION['rest'] -= number_format($dif*2,2);
+    $_SESSION['attention'] -= number_format($dif*2,2);
 
     return $app['twig']->render('status.html.twig', array('food'=>$_SESSION['food'], 'rest'=>$_SESSION['rest'], 'attention'=>$_SESSION['attention'], 'name'=> $_SESSION['name']));
   });
