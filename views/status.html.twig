@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Pet</title>
+  </head>
+  <body>
+    {% if food <= 0 %}
+      <h3>Sorry you lost your {{ name }}</h3>
+    {% elseif attention <= 0 %}
+      <h3>{{ name }} needs attention</h3>
+    {% elseif rest <=0 %}
+      <h3>{{ name }} needs a rest</h3>
+    {% else %}
+      <h3>{{ name }} is healthy</h3>
+      <li>Rest: {{ rest }}</li>
+      <li>Food: {{ food }}</li>
+      <li>Attention: {{ attention }}</li>
+    {% endif %}
+
+    <form action="/goback" method="post">
+      <button type="submit">Go Back</button>
+    </form>
+
+  </body>
+</html>
